@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "594685962245",
+    "firebase_url": "https://pharm-ca610-default-rtdb.firebaseio.com",
+    "project_id": "pharm-ca610",
+    "storage_bucket": "pharm-ca610.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594685962245:android:f72fa3cc9e8ad87645546c",
+        "android_client_info": {
+          "package_name": "com.example.pharm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "594685962245-0db4mvus0fnbi7r7q68r0314ukp45jv3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9yYBoh9TusG2ZHPE80Dot6rZklRM1hbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "594685962245-0db4mvus0fnbi7r7q68r0314ukp45jv3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
