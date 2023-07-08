@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/solid_wallpaper"
+    android:background="@drawable/background3"
     tools:context=".MainActivity5">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Edit Profile Data"
+        android:text="Edit Profile"
         android:textAlignment="center"
         android:textColor="@color/deepblue"
         android:fontFamily="@font/alatsi"

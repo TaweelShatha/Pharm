@@ -1,8 +1,6 @@
 package com.example.pharm;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -14,6 +12,8 @@ import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity3 extends AppCompatActivity implements SensorEventListener {
 
@@ -29,8 +29,10 @@ public class MainActivity3 extends AppCompatActivity implements SensorEventListe
     Sensor mAcc;
     TextView count ;
     int steps =0;
+    ImageButton cart;
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +46,9 @@ public class MainActivity3 extends AppCompatActivity implements SensorEventListe
         promot = findViewById(R.id.webview);
         count = findViewById(R.id.textView2);
         shop = findViewById(R.id.imageButton2);
+        cart = findViewById(R.id.imageButton3);
         SensorEventListener sensorEventListener = new SensorEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onSensorChanged(SensorEvent event) {
                 float x_acceleration = event.values[0];
@@ -97,6 +101,14 @@ public class MainActivity3 extends AppCompatActivity implements SensorEventListe
                 startActivity(i);
             }
         });
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity3.this, cart.class);
+                startActivity(i);
+            }
+        });
+
 
     }
 

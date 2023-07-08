@@ -44,4 +44,6 @@
     <string name="social_status">Social Status</string>
     <string name="todo5">TODO</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="todo9">todo</string>
+    <string name="admin_dashboard">Admin Dashboard</string>
 </resources>
