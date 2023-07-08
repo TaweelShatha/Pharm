@@ -7,7 +7,7 @@ public class User {
     String Gender;
     String SStatus;
     String email;
-    String password;
+
 
     public User(String name, String DOB, String city, String gender, String SStatus, String email, String password) {
         Name = name;
@@ -16,7 +16,7 @@ public class User {
         Gender = gender;
         this.SStatus = SStatus;
         this.email = email;
-        this.password = password;
+
     }
 
     public User() {
@@ -31,7 +31,6 @@ public class User {
                 ", Gender='" + Gender + '\'' +
                 ", SStatus='" + SStatus + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 '}';
     }
 
@@ -83,11 +82,5 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
