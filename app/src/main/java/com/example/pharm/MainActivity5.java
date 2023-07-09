@@ -56,15 +56,21 @@ public class MainActivity5 extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("UsersPics");
 
 
-
-        editpassword.setOnClickListener(new View.OnClickListener() {
+        editname.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity5.this,UpdatePassword.class);
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity5.this, UpdateName.class);
                 startActivity(i);
             }
         });
-        profilepic.setOnClickListener(new View.OnClickListener(){
+        editpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity5.this, UpdatePassword.class);
+                startActivity(i);
+            }
+        });
+        profilepic.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -73,56 +79,52 @@ public class MainActivity5 extends AppCompatActivity {
         });
 
     }
+
     private void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
-                && data != null && data.getData() != null)
-        {
+                && data != null && data.getData() != null) {
             mImageUri = data.getData();
-          Picasso.get().load(mImageUri).into(set);
-          UploadImage();
+            Picasso.get().load(mImageUri).into(set);
+            UploadImage();
 
         }
     }
 
-    public  void UploadImage()
-    {
-        if (mImageUri!=null)
-        {
+    public void UploadImage() {
+        if (mImageUri != null) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             StorageReference fileRef = storageReference.child(user.getEmail()
-                    +"."+getFileExtension(mImageUri));
+                    + "." + getFileExtension(mImageUri));
 
             fileRef.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
-                        {
-                                Toast.makeText(MainActivity5.this , "Upload Successful",Toast.LENGTH_LONG).show();
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(MainActivity5.this, "Upload Successful", Toast.LENGTH_LONG).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
-                        public void onFailure(@NonNull Exception e)
-                        {
-                            Toast.makeText(MainActivity5.this,"Check Your Connection" , Toast.LENGTH_LONG).show();
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(MainActivity5.this, "Check Your Connection", Toast.LENGTH_LONG).show();
                         }
                     });
 
-        }
-        else
-        {
-            Toast.makeText(this,"NO Image Selected" ,Toast.LENGTH_SHORT);
+        } else {
+            Toast.makeText(this, "NO Image Selected", Toast.LENGTH_SHORT);
         }
     }
+
     public String getFileExtension(Uri uri) {
         ContentResolver cR = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
