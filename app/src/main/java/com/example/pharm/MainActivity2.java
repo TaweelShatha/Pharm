@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity2 extends AppCompatActivity {
     EditText email;
     TextView send;
@@ -21,13 +23,16 @@ public class MainActivity2 extends AppCompatActivity {
         email = findViewById(R.id.editTextTextEmailAddress2);
         send = findViewById(R.id.sendemail);
         back = findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
+        send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                 FirebaseAuth.getInstance().sendPasswordResetEmail(email.getText().toString());
                 Intent i = new Intent(MainActivity2.this, MainActivity.class);
                 startActivity(i);
-            }
-        });
 
-    }
+        }
+
+    });
+}
 }

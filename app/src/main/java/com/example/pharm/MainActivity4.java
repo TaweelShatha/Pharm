@@ -133,8 +133,7 @@ public class MainActivity4 extends AppCompatActivity implements AdapterView.OnIt
                                     }
                                 });
 
-                        Intent i = new Intent(MainActivity4.this,MainActivity.class);
-                        startActivity(i);
+
                     }
                 });
             }
