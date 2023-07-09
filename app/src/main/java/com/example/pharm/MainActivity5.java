@@ -133,27 +133,96 @@ public class MainActivity5 extends AppCompatActivity {
     public void UploadImage() {
         if (mImageUri != null) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            StorageReference fileRef = storageReference.child(user.getEmail()
-                    + "." + getFileExtension(mImageUri));
+            final String userEmail = user.getEmail();
+            final String newImageFileName = userEmail + "." + getFileExtension(mImageUri);
+            final StorageReference newFileRef = storageReference.child(newImageFileName);
 
-            fileRef.putFile(mImageUri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(MainActivity5.this, "Upload Successful", Toast.LENGTH_LONG).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(MainActivity5.this, "Check Your Connection", Toast.LENGTH_LONG).show();
-                        }
-                    });
+            // Delete the previous image from Firebase Storage
+            docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    String prevImagePath = documentSnapshot.getString("imagePath");
+                    if (prevImagePath != null && !prevImagePath.isEmpty()) {
+                        StorageReference prevFileRef = FirebaseStorage.getInstance().getReference().child(prevImagePath);
+                        prevFileRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Previous image deleted successfully
+                                // Now upload the new image
+                                uploadNewImage(newFileRef);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // An error occurred while deleting the previous image
+                                Toast.makeText(MainActivity5.this, "Failed to delete previous image", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } else {
+                        // No previous image to delete
+                        // Just upload the new image
+                        uploadNewImage(newFileRef);
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    // Error occurred while retrieving the document
+                    Toast.makeText(MainActivity5.this, "Failed to retrieve document", Toast.LENGTH_SHORT).show();
+                }
+            });
 
         } else {
             Toast.makeText(this, "NO Image Selected", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void uploadNewImage(StorageReference fileRef) {
+        fileRef.putFile(mImageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // New image uploaded successfully
+                        // Get the download URL of the new image
+                        fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                String newImageUri = uri.toString();
+                                final String newImageFileName = user.getEmail() + "." + getFileExtension(mImageUri);
+
+                                // Update the imageUri field in Firestore
+                                docRef.update("imagePath", newImageFileName)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Toast.makeText(MainActivity5.this, "Upload Successful", Toast.LENGTH_LONG).show();
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(MainActivity5.this, "Failed to update image path", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(MainActivity5.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // An error occurred while uploading the new image
+                        Toast.makeText(MainActivity5.this, "Check Your Connection", Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+
 
     public String getFileExtension(Uri uri) {
         ContentResolver cR = getContentResolver();

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity7 extends AppCompatActivity {
     ImageButton approveorders;
     ImageButton editstock;
@@ -32,6 +34,14 @@ public class MainActivity7 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity7.this, EditStock.class);
+                startActivity(i);
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent i = new Intent(MainActivity7.this, MainActivity.class);
                 startActivity(i);
             }
         });

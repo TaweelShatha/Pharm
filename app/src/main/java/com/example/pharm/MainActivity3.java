@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity3 extends AppCompatActivity implements SensorEventListener {
 
     ImageButton menu;
@@ -115,6 +117,16 @@ public class MainActivity3 extends AppCompatActivity implements SensorEventListe
                 startActivity(i);
             }
         });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+                                      @Override
+                                      public void onClick(View view) {
+                                          FirebaseAuth.getInstance().signOut();
+                                          Intent i = new Intent(MainActivity3.this, MainActivity.class);
+                                          startActivity(i);
+                                      }
+                                  }
+        );
 
 
     }
