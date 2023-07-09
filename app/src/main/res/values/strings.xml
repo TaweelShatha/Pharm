@@ -46,4 +46,6 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="todo9">todo</string>
     <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="todo10">TODO</string>
+    <string name="my_cart">My Cart</string>
 </resources>
