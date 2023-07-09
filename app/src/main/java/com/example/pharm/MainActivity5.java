@@ -57,11 +57,20 @@ public class MainActivity5 extends AppCompatActivity {
         set = findViewById(R.id.setting_profile_image);
         storageReference = FirebaseStorage.getInstance().getReference("UsersPics");
         firestore = FirebaseFirestore.getInstance();
+        editname = findViewById(R.id.editname);
         editpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity5.this, UpdatePassword.class);
                 startActivity(i);
+            }
+        });
+        editname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity5.this, UpdateName.class);
+                startActivity(i);
+
             }
         });
         profilepic.setOnClickListener(new View.OnClickListener() {

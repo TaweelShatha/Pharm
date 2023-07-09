@@ -24,12 +24,12 @@
         android:layout_height="20dp" />
 
     <EditText
-            android:id="@+id/newpasslog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="New Name"
-            android:textColorHint="@color/deepblue"
-            android:inputType="textPassword" />
+        android:id="@+id/newName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="New Name"
+        android:textColorHint="@color/deepblue"
+        android:inputType="text" />
 
     <Space
         android:layout_width="match_parent"
