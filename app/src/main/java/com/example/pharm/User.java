@@ -8,6 +8,16 @@ public class User {
     String SStatus;
     String email;
 
+    public String getRole() {
+        return Role;
+    }
+
+    public void setRole(String role) {
+        Role = role;
+    }
+
+    String Role = "User";
+
 
     public User(String name, String DOB, String city, String gender, String SStatus, String email, String password) {
         Name = name;
@@ -31,6 +41,7 @@ public class User {
                 ", Gender='" + Gender + '\'' +
                 ", SStatus='" + SStatus + '\'' +
                 ", email='" + email + '\'' +
+                ", Role='" + Role +'\'' +
                 '}';
     }
 

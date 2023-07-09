@@ -13,9 +13,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         register = findViewById(R.id.textView3);
         login = findViewById(R.id.login);
         mAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
 
         forgot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,13 +64,45 @@ public class MainActivity extends AppCompatActivity {
                 {
                     return;      // make error on layout wrong password
                 }
+
                 mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                        .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    startActivity(i);
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    if (user != null) {
+                                        firestore.collection("Users").document(user.getEmail().toString())
+                                                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                    @Override
+                                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                        if (documentSnapshot.exists()) {
+                                                            String role = documentSnapshot.getString("Role");
+                                                            if (role != null) {
+                                                                if (role.equals("Admin")) {
+                                                                    Intent intent = new Intent(MainActivity.this, MainActivity7.class);
+                                                                    startActivity(intent);
+                                                                } else if (role.equals("User")) {
+                                                                    Intent intent = new Intent(MainActivity.this, MainActivity3.class);
+                                                                    startActivity(intent);
+                                                                } else {
+                                                                    return;
+                                                                }
+                                                            } else {
+                                                                return;                                                            }
+                                                        } else {
+                                                           Toast.makeText(MainActivity.this , "No user registered with this email",Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                }).addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        // Error occurred while retrieving the document, handle accordingly
+                                                    }
+                                                });
+                                    } else {
+                                        // User is null, handle accordingly
+                                    }
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Toast.makeText(MainActivity.this, "Authentication failed.",
