@@ -1,5 +1,7 @@
 package com.example.pharm;
 
+import java.net.URI;
+
 public class User {
     String Name;
     String DOB;
@@ -7,6 +9,16 @@ public class User {
     String Gender;
     String SStatus;
     String email;
+
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
+    }
+
+    String imageUri = null;
 
     public String getRole() {
         return Role;
@@ -42,6 +54,7 @@ public class User {
                 ", SStatus='" + SStatus + '\'' +
                 ", email='" + email + '\'' +
                 ", Role='" + Role +'\'' +
+                ", imageUri='" + imageUri +'\'' +
                 '}';
     }
 

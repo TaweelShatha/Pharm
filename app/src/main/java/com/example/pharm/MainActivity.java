@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                                                         if (documentSnapshot.exists()) {
-                                                            String role = documentSnapshot.getString("Role");
+                                                            String role = documentSnapshot.getString("role");
                                                             if (role != null) {
                                                                 if (role.equals("Admin")) {
                                                                     Intent intent = new Intent(MainActivity.this, MainActivity7.class);
