@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background3"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update Name"
+        android:textAlignment="center"
+        android:textColor="@color/deepblue"
+        android:fontFamily="@font/alatsi"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <EditText
+            android:id="@+id/newpasslog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="New Name"
+            android:textColorHint="@color/deepblue"
+            android:inputType="textPassword" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <Button
+        android:id="@+id/updatename"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Update Name"
+        android:textColor="@color/white"
+        android:fontFamily="@font/alatsi"
+        android:textSize="20sp"/>
+
+</LinearLayout>
