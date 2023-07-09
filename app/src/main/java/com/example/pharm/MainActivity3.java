@@ -85,6 +85,13 @@ public class MainActivity3 extends AppCompatActivity implements SensorEventListe
                         startActivity(i);
                     }
                 });
+                myorder.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(MainActivity3.this, MyOrders.class);
+                        startActivity(i);
+                    }
+                });
 
             }
         });

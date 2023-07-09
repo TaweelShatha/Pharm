@@ -48,4 +48,6 @@
     <string name="admin_dashboard">Admin Dashboard</string>
     <string name="todo10">TODO</string>
     <string name="my_cart">My Cart</string>
+    <string name="_0">0</string>
+    <string name="confirm_buy">Confirm Buy</string>
 </resources>

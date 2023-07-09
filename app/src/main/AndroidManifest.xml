@@ -23,6 +23,12 @@
         android:theme="@style/Theme.Pharm"
         tools:targetApi="31">
         <activity
+            android:name=".UpdatePassword"
+            android:exported="false" />
+        <activity
+            android:name=".MyOrders"
+            android:exported="false" />
+        <activity
             android:name=".cart"
             android:exported="false" />
         <activity

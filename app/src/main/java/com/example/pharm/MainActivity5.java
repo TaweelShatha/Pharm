@@ -60,6 +60,8 @@ public class MainActivity5 extends AppCompatActivity {
         editpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent i = new Intent(MainActivity5.this,UpdatePassword.class);
+                startActivity(i);
             }
         });
         profilepic.setOnClickListener(new View.OnClickListener(){
