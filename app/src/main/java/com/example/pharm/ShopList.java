@@ -1,8 +1,8 @@
 package com.example.pharm;
-public class OrderList{
+public class ShopList {
     private String description;
     private int imgId;
-    public OrderList(String description, int imgId) {
+    public ShopList(String description, int imgId) {
         this.description = description;
         this.imgId = imgId;
     }

@@ -11,9 +11,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
-    private OrderList[] listdata;
-    public OrderAdapter(OrderList[] listdata) {
+public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder>{
+    private ShopList[] listdata;
+    public ShopAdapter(ShopList[] listdata) {
         this.listdata = listdata;
     }
     @Override
@@ -26,7 +26,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final OrderList myListData = listdata[position];
+        final ShopList myListData = listdata[position];
         holder.textView.setText(listdata[position].getDescription());
         holder.imageView.setImageResource(listdata[position].getImgId());
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {

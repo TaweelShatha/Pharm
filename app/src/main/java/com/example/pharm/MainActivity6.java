@@ -12,13 +12,13 @@ public class MainActivity6 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main6);
-        OrderList[] myList = new OrderList[] {
-                new OrderList("Acetaminophen", R.drawable.acetam),
-                new OrderList("Adderall",R.drawable.adderall),
-                new OrderList("Amitriptyline", R.drawable.amitrip)};
+        ShopList[] myList = new ShopList[] {
+                new ShopList("Acetaminophen", R.drawable.acetam),
+                new ShopList("Adderall",R.drawable.adderall),
+                new ShopList("Amitriptyline", R.drawable.amitrip)};
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        OrderAdapter adapter = new OrderAdapter(myList);
+        ShopAdapter adapter = new ShopAdapter(myList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
