@@ -49,6 +49,9 @@
     <string name="todo10">TODO</string>
     <string name="my_cart">My Cart</string>
     <string name="_0">0</string>
-    <string name="confirm_buy">Confirm Buy</string>
+    <string name="confirm_buy">Confirm</string>
     <string name="aprrove_orders">Aprrove Orders</string>
+    <string name="order_details">Order Details</string>
+    <string name="approve">Approve</string>
+    <string name="decline">Decline</string>
 </resources>

@@ -27,23 +27,61 @@
                 android:layout_width="150dp"
                 android:layout_height="160dp"
                 android:scaleType="fitCenter"
-                android:background="@color/lightblue"
+                android:background="@drawable/background3"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="0dp"
                 android:contentDescription="Icon"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-            <Space
-                android:layout_width="60dp"
-                android:layout_height="match_parent" />
+
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:textColor="@color/deepblue"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <TextView
+                    android:id="@+id/q"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Left in Stock:"
+                    android:gravity="center"
+                    android:fontFamily="@font/alatsi"
+                    />
+
+                <TextView
+                    android:id="@+id/qnum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:gravity="center"
+                    android:fontFamily="@font/alatsi"
+                    android:textSize="15sp"
+                    />
+
+                <Button
+                    android:id="@+id/addtobag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add To bag"
+                    android:fontFamily="@font/alatsi"
+                    />
+
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
