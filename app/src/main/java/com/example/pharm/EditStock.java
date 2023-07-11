@@ -98,7 +98,7 @@ public class EditStock extends AppCompatActivity {
                     .addOnSuccessListener(taskSnapshot -> {
                         Toast.makeText(EditStock.this, "Image uploaded successfully.", Toast.LENGTH_SHORT).show();
                         imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                            String imageUrl = uri.toString();
+                            String imageUrl = "gs://" + imageRef.getBucket() + "/" + imageRef.getPath();
                             Drug newd = new Drug(name, imageUrl, Integer.parseInt(qq.trim()));
                             db.collection("Drug")
                                     .document()
@@ -120,6 +120,7 @@ public class EditStock extends AppCompatActivity {
                     });
         }
     }
+
 
     private Uri getImageUri() {
         return (Uri) drugimg.getTag();
